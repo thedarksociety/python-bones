@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  python:
+    build:
+      context: .
+      dockerfile: build/dev/Dockerfile
+    container_name: python
+
+    working_dir: /app/
+    volumes:
+      - ./:/app
+
+    networks:
+      - bones
+
+    command: python3 dark/bones/main.py --python rye --bones tiffany
+
+networks:
+  bones:
+    driver: bridge
